@@ -4,6 +4,8 @@ System Monitor Project in the Object Oriented Programming Course of the [Udacity
 
 ![System Monitor](images/monitor.png)
 
+Check my sumary and how to do it here : https://huyphann155.notion.site/Project-System-Monitor-9c53f13b5d844a72a23f2836038000bc?pvs=4
+
 ## Udacity Linux Workspace
 [Udacity](https://www.udacity.com/) provides a browser-based Linux [Workspace](https://engineering.udacity.com/creating-a-gpu-enhanced-virtual-desktop-for-udacity-497bdd91a505) for students. 
 
