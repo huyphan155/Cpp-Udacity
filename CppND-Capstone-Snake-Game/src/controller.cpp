@@ -35,7 +35,13 @@ void Controller::HandleInput(bool &running, Snake &snake) const {
           ChangeDirection(snake, Snake::Direction::kRight,
                           Snake::Direction::kLeft);
           break;
+        case SDLK_p:
+          TogglePaused();
+          break;
       }
     }
   }
 }
+
+  bool Controller::IsPaused() const { return paused; }
+  void Controller::TogglePaused() const { paused = !paused; }
