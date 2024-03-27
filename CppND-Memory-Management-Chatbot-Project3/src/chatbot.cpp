@@ -30,6 +30,7 @@ ChatBot::ChatBot(std::string filename)
     _image = new wxBitmap(filename, wxBITMAP_TYPE_PNG);
 }
 
+// 1. destructors
 ChatBot::~ChatBot()
 {
     std::cout << "ChatBot Destructor" << std::endl;
@@ -44,6 +45,82 @@ ChatBot::~ChatBot()
 
 //// STUDENT CODE
 ////
+// The rule of Five
+//2. copy constructor
+ChatBot::ChatBot(const ChatBot &source)
+{
+    std::cout << "ChatBot Copy Constructor" << std::endl;
+    _image = new wxBitmap; // allocate memory for _image
+    *_image = *source._image; // copy the content from source
+
+    // Copy other members
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
+    //_currentNode = source._currentNode;
+}
+
+//3. assignment operator
+ChatBot &ChatBot::operator=(const ChatBot &source)
+{
+    std::cout << "ChatBot Copy Assignment Operator" << std::endl;
+    //  checks current object is the same as the source object 
+    if (this == &source)
+        return *this;
+    // Deallocate existing resources
+    delete _image;
+    _image = new wxBitmap; // allocate memory for _image
+    *_image = *source._image; // copy the content from source
+
+    // Copy other members
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
+   // _currentNode = source._currentNode;
+    return *this;
+}
+
+//4. move constructor
+ChatBot::ChatBot(ChatBot &&source)
+{
+    std::cout << "ChatBot Move Constructor" << std::endl;
+    // Move image pointer
+    _image = source._image;
+    source._image = nullptr;
+    // Move other members
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
+    //_currentNode = source._currentNode;
+    // Reset source to valid state
+    source._image = nullptr;
+    source._rootNode = nullptr;
+    source._chatLogic = nullptr;
+    //source._currentNode = nullptr;
+}
+
+//5. move assignment operator
+ChatBot &ChatBot::operator=(ChatBot &&source)
+{
+    std::cout << "ChatBot Move Assignment Operator" << std::endl;
+    // checks current object is the same as the source object 
+    if (this == &source)
+        return *this;
+    // Deallocate existing resources
+    delete _image;
+    // Move image pointer
+    _image = source._image;
+    source._image = nullptr;
+    // Move other members
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
+    //_currentNode = source._currentNode;
+    // Reset source to valid state
+    source._image = nullptr;
+    source._rootNode = nullptr;
+    source._chatLogic = nullptr;
+    //source._currentNode = nullptr;
+    _chatLogic->SetChatbotHandle(this);
+    return *this;
+}
+
 
 ////
 //// EOF STUDENT CODE
